@@ -48,5 +48,5 @@ All datasets are split into training/validation/test sets with a 6:2:2 ratio; we
 The other two publicly available datasets are Weibo19 (Song et al., 2019) and Pheme (Zubiaga et al., 2017). We use the JSON-integrated version provided at [MFAN](https://github.com/drivsaf/MFAN). You may construct the dataset using json_to_xlsx.py, or directly use our preprocessed version.
 ```bash
 export OPENAI_API_KEY="your_key"
-python ced_pipeline_minimal_api.py --dataset_dir dataset --output dataset.xlsx
+python json_to_xlsx.py --dataset_dir dataset --output dataset.xlsx
 ```
