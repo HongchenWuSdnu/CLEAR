@@ -26,22 +26,23 @@ python train_pheme.py
 python train_VRDD.py
 ```
 
-### 3) Evaluation (VRDD)
-r
-#### Test a single checkpoint (default: uns both TEST and OOD/VAL)
+### 3）Baselines
+Due to repository size considerations, the additional baselines (training scripts, checkpoints, and one-click evaluation scripts) are available at [Zenodo](https://zenodo.org/records/18939502?preview=1&token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjZhNmQ2ZDUxLWMwMmQtNGJlZi1iZDI3LTYwMjM0MDAwMWNiOCIsImRhdGEiOnt9LCJyYW5kb20iOiJkNjA4M2UxMjhiMjg4MDA2YTM0NTUwNjAwOTJmZDdmNSJ9.cr5lQXovUPtRU40Oy66_REPvoHWCabI44xJ9QdvV9Nxy9tPx0yuzqD8AD0J-98k83jNTjLlElNnLPEKBgTUbVw).
+
+You can use the following command to test all baseline results at once:
 ```bash
-python test.py Model_name.bin
+python evaluate_all_baselines.py --xlsx_dir xlsx --ckpt_dir checkpoints
+```
+We used the following command to generate two dataset files incorporating white-box LLM priors:
+```bash
+bash prepare_white_box_priors.sh
+```
+You can use the following command to test the CLEAR classification results after replacing the prior with a white-box LLM:
+```bash
+python test_CLEAR_two_local_llm_models.py --train_script train.py
 ```
 
-#### Test multiple checkpoints (batch comparison)
-```bash
-python test.py Model_name_A.bin B.bin C.bin
-```
 
-#### OOD only
-```bash
-python test.py Model_name.bin --run ood
-```
 ## Dataset
 
 All datasets are split into training/validation/test sets with a 6:2:2 ratio; we select the best epoch based on validation accuracy and report the corresponding performance on the test set. 
